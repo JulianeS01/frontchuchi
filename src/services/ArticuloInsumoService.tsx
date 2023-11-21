@@ -1,9 +1,9 @@
 import { BASE_URL } from "../Config";
-import { ArticuloManufacturado } from "../types/ArtuculoManufacturado";
+import { ArticuloInsumo } from "../types/ArticuloInsumo";
 
-export const ArticuloManufacturadoService = {
+export const ArticuloInsumoService = {
   getArticulos: async () => {
-    const response = await fetch(`${BASE_URL}/elbuensabor/v1/articulosmanufacturados`);
+    const response = await fetch(`${BASE_URL}/elbuensabor/v1/articulosinsumo`);
     if (!response.ok) {
       throw new Error('Error al obtener la lista de artículos');
     }
@@ -11,9 +11,9 @@ export const ArticuloManufacturadoService = {
     return data;
   },
 
-  addArticulo: async (formData: { nombre: string, descripcion: string, precioVenta: number, tiempoEstimadoCocina: number }) => {
+  addArticulo: async (formData: { nombre: string, descripcion: string, precioCompra: number, stockActual: number, stockMinimo: number }) => {
     try {
-      const response = await fetch(`${BASE_URL}/elbuensabor/v1/articulosmanufacturados`, {
+      const response = await fetch(`${BASE_URL}/elbuensabor/v1/articulosinsumo`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,9 +30,9 @@ export const ArticuloManufacturadoService = {
     }
   },
 
-  updateArticulo: async (articuloId: number, data: ArticuloManufacturado) => {
+  updateArticulo: async (articuloId: number, data: ArticuloInsumo) => {
     try {
-      const response = await fetch(`${BASE_URL}/elbuensabor/v1/articulosmanufacturados/${articuloId}`, {
+      const response = await fetch(`${BASE_URL}/elbuensabor/v1/articulosinsumo/${articuloId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export const ArticuloManufacturadoService = {
 
   deleteArticulo: async (articuloId: number) => {
     try {
-      const response = await fetch(`${BASE_URL}/elbuensabor/v1/articulosmanufacturados/${articuloId}`, {
+      const response = await fetch(`${BASE_URL}/elbuensabor/v1/articulosinsumo/${articuloId}`, {
         method: 'DELETE',
       });
 

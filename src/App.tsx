@@ -1,16 +1,24 @@
-import React from "react";
-import RegisterUser from './components/User/LoginUser';
-import LoginUser from './components/User/RegisterUser';
-import ArticuloManufacturadoManagement from './components/ArticuloManufacturado/ArticuloManufacturadoManagement'
+import { BrowserRouter } from 'react-router-dom';
+import * as React from 'react';
+import Spinner from 'react-bootstrap/Spinner';
+import Footer from './components/Footer/Footer';
 
-const App: React.FC = () => {
+const NavBar = React.lazy(() => import('./components/layout/NavBar'));
+const Router = React.lazy(() => import('./components/Router'));
+
+function App() {
   return (
-    <div>
-      <RegisterUser/>
-      <LoginUser/>
-      <ArticuloManufacturadoManagement/>
-    </div>
-  );
-};
+    <><React.Suspense fallback={<Spinner animation="border" />}>
+        <BrowserRouter>
+      <div>
+        <NavBar />
+        <Router />
+        
+      </div>
+    </BrowserRouter>
+    </React.Suspense><Footer/></>
+   
+  )
+}
 
-export default App;
+export default App
