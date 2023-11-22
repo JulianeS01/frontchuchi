@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { AuthService } from "../services/AuthService";
 import React from "react";
+import './login.css';
 
 const RegisterPage = () => {
     const [userData, setUserData] = useState ({
@@ -28,9 +29,9 @@ const RegisterPage = () => {
     };
 
     return (
-        <div>
-            <h2>Registro</h2>
-            <form>
+        <div className="pantallaRegistro">
+            
+            <div className="formRegistro">
                 <label>Nombre de usuario: 
                 <input type="email" name="username" onChange={handleInputchange}/>
                 </label>
@@ -51,8 +52,8 @@ const RegisterPage = () => {
                 <input type="text" name="country" onChange={handleInputchange}/>
                 </label>
                 <br/>
-                <button type="button" onClick={handleRegister}>Registrarse</button>
-            </form>
+                <button id="iniciarSesion" onClick={handleRegister}>Registrarse</button>
+            </div>
         </div>
     );
 };

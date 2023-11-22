@@ -5,7 +5,7 @@ import ArticuloInsumoABM from "./components/ArticuloInsumo/ArticuloInsumoABM";
 import ArticuloManufacturadoABM from "./components/ArticuloManufacturado/ArticuloManufacturadoABM";
 import useProducts from "./hooks/useProducts";
 
-// const ProductsTable = React.lazy(() => import('./components/ProductsTable'));
+const ProductsTable = React.lazy(() => import('./components/AbmFactura/FacturaTable'));
 
 const Admin: React.FC = () => {
   // Utils

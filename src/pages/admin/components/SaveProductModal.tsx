@@ -5,16 +5,16 @@ import Modal from 'react-bootstrap/Modal';
 import * as React from 'react';
 import Row from 'react-bootstrap/Row';
 
-import Product from '../../../types/ArtuculoManufacturado';
+import { ArticuloManufacturado } from '../../../types/ArtuculoManufacturado';
 
 type DeleteProductModalProps = {
   onHide: () => void;
-  onSave: (p: Product) => void;
-  product: Product | null;
+  onSave: (p: ArticuloManufacturado) => void;
+  ArticuloManufacturado: ArticuloManufacturado | null;
   show: boolean;
 };
 
-const DeleteProductModal: React.FC<DeleteProductModalProps> = ({ onSave, onHide, product, show }) => {
+const DeleteProductModal: React.FC<DeleteProductModalProps> = ({ onSave, onHide, ArticuloManufacturado, show }) => {
   // State
   const [validated, setValidated] = React.useState<boolean>(false);
 
@@ -32,7 +32,7 @@ const DeleteProductModal: React.FC<DeleteProductModalProps> = ({ onSave, onHide,
     }
 
     const data = Object.fromEntries(new FormData(form));
-    onSave({ ...product!, ...data });
+    onSave({ ...ArticuloManufacturado!, ...data });
   };
 
   // Render
@@ -40,14 +40,14 @@ const DeleteProductModal: React.FC<DeleteProductModalProps> = ({ onSave, onHide,
     <Modal show={show} onHide={onHide}>
       <Form noValidate onSubmit={handleSubmit} validated={validated}>
         <Modal.Header closeButton>
-          <Modal.Title>{product?.id === 0 ? 'Create' : 'Edit'} Product</Modal.Title>
+          <Modal.Title>{ArticuloManufacturado?.id === 0 ? 'Create' : 'Edit'} ArticuloManufacturado</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Row className="mb-3">
             <Form.Group as={Col}>
-              <Form.Label>Title</Form.Label>
+              <Form.Label>Titulo</Form.Label>
               <Form.Control
-                defaultValue={product?.title}
+                defaultValue={ArticuloManufacturado?.nombre}
                 name="title"
                 placeholder="Title"
                 required
@@ -57,9 +57,9 @@ const DeleteProductModal: React.FC<DeleteProductModalProps> = ({ onSave, onHide,
           </Row>
           <Row className="mb-3">
             <Form.Group as={Col}>
-              <Form.Label>Description</Form.Label>
+              <Form.Label>Descripcion</Form.Label>
               <Form.Control
-                defaultValue={product?.description}
+                defaultValue={ArticuloManufacturado?.descripcion}
                 name="description"
                 placeholder="Description"
                 required
@@ -67,35 +67,12 @@ const DeleteProductModal: React.FC<DeleteProductModalProps> = ({ onSave, onHide,
               />
             </Form.Group>
           </Row>
+         
           <Row className="mb-3">
             <Form.Group as={Col}>
-              <Form.Label>Category</Form.Label>
+              <Form.Label>Precio Venta</Form.Label>
               <Form.Control
-                defaultValue={product?.category}
-                name="category"
-                placeholder="Category"
-                required
-                type="text"
-              />
-            </Form.Group>
-          </Row>
-          <Row className="mb-3">
-            <Form.Group as={Col}>
-              <Form.Label>Image</Form.Label>
-              <Form.Control
-                defaultValue={product?.image}
-                name="image"
-                placeholder="Image"
-                required
-                type="text"
-              />
-            </Form.Group>
-          </Row>
-          <Row className="mb-3">
-            <Form.Group as={Col}>
-              <Form.Label>Price</Form.Label>
-              <Form.Control
-                defaultValue={product?.price}
+                defaultValue={ArticuloManufacturado?.precioVenta}
                 name="price"
                 placeholder="Price"
                 required
